@@ -23,5 +23,5 @@ jobs:
 
       - name: 'Build Hihahumodel Image'
         run: |
-          docker build . --tag ghcr.io/torpidfox/hihahumodel:latest
-          docker push ghcr.io/torpidfox/hihahumodel:latest
+          docker build . --tag ghcr.io/torpidfox/hihahu:latest
+          docker push ghcr.io/torpidfox/hihahu:latest
