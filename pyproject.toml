@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "memefinder"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+transformers = "^4.12.2"
+torch = ">=1.10.1"
+Pillow = ">=10.0.0"
+fastapi = "^0.104.0"
+httpx = "^0.25.0"
+qdrant-client = "^1.6.4"
+sentence-transformers = "^2.2.2"
+uvicorn = "^0.23.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
