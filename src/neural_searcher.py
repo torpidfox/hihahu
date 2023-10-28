@@ -1,6 +1,5 @@
 import os
 import uuid
-from typing import List
 
 from PIL import Image
 from qdrant_client import QdrantClient

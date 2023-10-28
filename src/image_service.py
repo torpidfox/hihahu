@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 
-from src.neural_searcher import NeuralSearcher
+from neural_searcher import NeuralSearcher
 
 app = FastAPI()
 COLLECTION_NAME = "amphetamemes"
