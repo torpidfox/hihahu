@@ -46,9 +46,9 @@ async def import_image(request: ImportImageRequest):
 @app.post("/search", response_model=SearchResponse)
 async def search(request: SearchRequest):
     search_results = neural_searcher.search(request.query)
-    results = SearchResult(telegram_filename=search_results)
+    results = [SearchResult(telegram_filename=r) for r in search_results]
 
-    return SearchResponse(results=[results])
+    return SearchResponse(results=results)
 
 
 if __name__ == "__main__":

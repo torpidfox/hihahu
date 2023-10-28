@@ -1,5 +1,6 @@
 import os
 import uuid
+from typing import List
 
 from PIL import Image
 from qdrant_client import QdrantClient
@@ -34,14 +35,17 @@ class NeuralSearcher:
             )
         )
 
-    def search(self, query: str) -> str:
+    def search(self, query: str) -> List[str]:
         query_emb = self.model.encode(query)
         search_result = self.qdrant_client.search(
             collection_name=self.collection_name,
             query_vector=query_emb.tolist(),
+            limit=5
         )
 
-        return search_result[0].payload['path']
+        print(search_result)
+
+        return [el.payload['path'] for el in search_result]
 
     # def create_collection(self):
     #     self.qdrant_client.recreate_collection(
