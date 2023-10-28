@@ -36,6 +36,12 @@ async def import_image(request: ImportImageRequest):
 
     return ImportImageResponse()
 
+@app.post("/batch_inference", response_model=ImportImageResponse)
+async def import_image(request: ImportImageRequest):
+    neural_searcher.batch_upload(request.path, COLLECTION_NAME)
+
+    return ImportImageResponse()
+
 
 @app.get("/search", response_model=SearchResponse)
 async def search(request: SearchRequest):

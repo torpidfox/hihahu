@@ -51,16 +51,17 @@ class NeuralSearcher:
     #         optimizers_config=models.OptimizersConfigDiff(memmap_threshold=20000)
     #     )
 
-    def batch_upload(self, paths: List[str], collection_name: str):
-        images = [Image.open(path) for path in paths]
+    def batch_upload(self, path: str, collection_name: str):
+        paths = os.listdir(path)
+        images = [Image.open(os.path.join(path, f)) for f in paths]
         img_embs = self.model.encode(images)
 
-        self.qdrant_client.upload_collection(
+        self.qdrant_client.upsert(
             collection_name=collection_name,
             points=models.Batch(
                 vectors=img_embs.tolist(),
                 payloads=[{"path": p} for p in paths],
-                ids=None
+                ids=[str(uuid.uuid4()) for _ in paths]
             )
         )
 
