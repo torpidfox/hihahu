@@ -51,8 +51,9 @@ class NeuralSearcher:
     #     )
 
     def batch_upload(self, path: str, collection_name: str):
-        paths = os.listdir(path)
-        images = [Image.open(os.path.join(path, f)) for f in paths]
+        paths = [os.path.join(path, p) for p in os.listdir(path)]
+        images = [Image.open(p) for p in paths]
+
         img_embs = self.model.encode(images)
 
         self.qdrant_client.upsert(

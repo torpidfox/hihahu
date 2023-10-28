@@ -43,7 +43,7 @@ async def import_image(request: ImportImageRequest):
     return ImportImageResponse()
 
 
-@app.get("/search", response_model=SearchResponse)
+@app.post("/search", response_model=SearchResponse)
 async def search(request: SearchRequest):
     search_results = neural_searcher.search(request.query)
     results = SearchResult(telegram_filename=search_results)
